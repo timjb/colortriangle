@@ -1,3 +1,10 @@
+function log() {
+	if(window.console) {
+		console.log.apply(console, arguments);
+	}
+}
+
+
 /************
 * Example 1 *
 ************/
@@ -36,13 +43,13 @@
 	}
 	
 	ct.addEventListener('drag', function() {
-		console.log('drag');
+		log('drag');
 	});
 	ct.addEventListener('dragstart', function() {
-		console.log('dragstart');
+		log('dragstart');
 	});
 	ct.addEventListener('dragend', function() {
-		console.log('dragend');
+		log('dragend');
 		drawFavicon();
 	});
 	drawFavicon();
@@ -61,6 +68,7 @@
 	    header = doc.getElementsByTagName('h1')[0];
 	
 	function update() {
+		log('input change');
 		var style = header.style;
 		style.color = textColorInput.value;
 		style.background = backgroundColorInput.value;

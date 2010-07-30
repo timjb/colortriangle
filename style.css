@@ -1,0 +1,165 @@
+* { margin: 0; padding: 0; }
+html, body {
+	height: 100%;
+}
+
+body {
+	background: #3D362D;
+	color: #f3f3f3;
+	font: 15px/20px Nobile, "Trebuchet MS", sans-serif;
+}
+.section {
+	border-bottom: 1px solid #555;
+}
+.wrapper {
+	width: 640px;
+	margin: 0 auto;
+	padding: 18px;
+	position: relative;
+}
+.wrapper:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.wrapper.table {
+	display: table;
+}
+.wrapper.table > * {
+	display: table-cell;
+	vertical-align: top;
+}
+.wrapper.table > *:nth-child(2) {
+	width: 100%;
+}
+
+h1 {
+	font-size: 50px; line-height: 60px;
+	text-transform: lowercase;
+}
+h2 {
+	font-size: 38px; font-weight: normal; line-height: 32px;
+	padding-right: 20px;
+}
+h2:after {
+	content: ":";
+}
+h3 {
+	color: #ffecc1;
+	font-size: 23px; line-height: 25px;
+	margin: 30px 0 15px;
+	text-transform: lowercase;
+}
+h3:first-child {
+	margin-top: 0;
+}
+
+p, ul, ol {
+	margin-bottom: 10px;
+}
+
+/* Links */
+a { color: inherit; }
+a:hover { text-decoration: none; }
+
+/* Abbreviations */
+abbr {
+	border-bottom: 0;
+}
+
+/* Code */
+code {
+	font: 17px Inconsolata, monospace;
+}
+pre {
+	color: #fff;
+	font: 18px/22px Inconsolata, monospace;
+}
+pre .co { color: #ccc; }
+pre .br { color: #bbb; }
+pre .st { color: #fc0; }
+pre .kw { color: #fcc; }
+
+/* Lists */
+ul, ol {
+	padding-left: 20px;
+}
+ul {
+	list-style: square;
+}
+
+/************
+* Example 1 *
+************/
+
+#example-1 .color-triangle {
+	float: left;
+}
+#example-1-explanation {
+	width: 395px;
+	float: right;
+}
+
+
+/************
+* Example 2 *
+************/
+
+#example-2-explanation {
+	float: left;
+	width: 340px;
+}
+#example-2 {
+	float: right;
+	width: 290px;
+}
+#example-2 label {
+	display: block;
+	line-height: 32px;
+}
+#example-2 label span {
+	display: inline-block;
+	width: 90px;
+}
+#example-2 input {
+	font-size: 12px;
+	background: #4b4b4b; color: #ddd;
+	border: 0;
+	padding: 4px;
+	border: 1px solid #5a5a5a;
+	width: 180px;
+}
+#example-2 input:focus {
+	border-color: #888;
+	color: #fff;
+	outline: 0;
+}
+#example-2 .color-triangle {
+	box-shadow: 2px 2px 11px #222;
+	-webkit-box-shadow: 2px 2px 11px #222;
+	-moz-box-shadow: 2px 2px 11px #222;
+
+}
+
+
+/******
+* API *
+******/
+
+#api pre {
+	/*background: rgba(0, 0, 0, .25);*/
+	margin-bottom: 10px;
+	padding-left: 16px;
+	border-left: 3px solid #97836e;
+	/*padding: 5px;*/
+}
+#api .explanation {
+	/*margin-left: 20px;*/
+	overflow: hidden;
+	margin-bottom: 25px;
+}
+#layout-graphic-container canvas {
+	display: block;
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>colortriangle</title>
+<meta charset=utf-8>
+<meta name=author content="Tim Baumann">
+<meta name=viewport content="width=680px">
+<link rel=stylesheet href=http://fonts.googleapis.com/css?family=Nobile>
+<link rel=stylesheet href=http://fonts.googleapis.com/css?family=Inconsolata>
+<link rel=stylesheet href=style.css>
+
+<body>
+<div class=section>
+	<div class=wrapper>
+		<h1>ColorTriangle</h1>
+	</div>
+</div>
+<div class=section>
+	<div class=wrapper>
+		<div id=example-1></div>
+<pre id=example-1-explanation>
+<span class=co>// Play with the demo on the left and</span>
+<span class=co>// watch the favicon change its color</span>
+
+<span class=kw>var</span> ct = <span class=kw>new</span> <strong>ColorTriangle</strong><span class=br>(</span><span class=st>'#de701d'</span><span class=br>)</span>;
+ct.<strong>addEventListener</strong>(<span class=st>'dragend'</span>, <span class=kw>function</span><span class=br>() {</span><span id=webkit-notice></span>
+  drawFavicon<span class=br>(</span>ct.<span class=im>getHEX</span><span class=br>())</span>;
+<span class=br>})</span>;
+ct.<strong>inject</strong><span class=br>(</span>
+  <span class=kw>document</span>.getElementById<span class=br>(</span><span class=st>'example-1'</span><span class=br>)
+)</span>;
+</pre>
+<script>
+if(navigator.userAgent.toLowerCase().indexOf('webkit') != -1) {
+	document.getElementById('webkit-notice').innerHTML = '\n  <span class=co>\/\/ drawFavicon might fail in Webkit browsers.\n  // Try Firefox or Opera instead.</span>';
+}
+</script>
+	</div>
+</div>
+<div class=section>
+	<div class=wrapper>
+<pre id=example-2-explanation>
+<span class=co>// Try out the form on the right</span>
+
+<span class=co>// This adds a ColorTriangle to all</span>
+<span class=co>// &lt;input type="color" &hellip; &gt; elements</span>
+ColorTriangle.<strong>initColorInputs</strong><span class=br>()</span>;
+
+<span class=co>// A change event will fire on the input fields</span>
+<span class=co>// when the user selects a new color</span>
+field1.<strong>addEventListener</strong>(<span class=st>'change'</span>, changeHeader, <span class=kw>false</span><span class=br>)</span>;
+</pre>
+		<div id=example-2>
+			<form>
+				<label><span>Text Color:</span> <input type=color value=#f3f3f3 id=text-color-input></label>
+				<label><span><abbr title=background>Bg</abbr> Color:</span> <input type=color value=#3D362D id=background-color-input></label>
+			</form>
+		</div>
+	</div>
+</div>
+<div class=section>
+	<div class="wrapper table">
+		<h2>API</h2>
+		<div id=api>
+
+<h3 id=instantiation>Instantiation</h3>
+
+<pre><span class=kw>var</span> triangle = <span class=kw>new</span> <strong>ColorTriangle</strong><span class=br>(</span>[<em>startColor</em> [, <em>options</em>]]<span class=br>)</span>;</pre>
+<ol class=explanation>
+	<li><em>startColor</em> is a hex color string (<abbr title=default>dflt</abbr>: "#f00") or a color object (&rarr;&nbsp;<a href=http://github.com/brehaut/color-js/>brehaut/color-js</a>)
+	<li>
+		<em>options</em> is an object. Specifying these properties will overwrite the default settings:
+		<ul>
+			<li><em>size</em> (<abbr title=default>dflt</abbr>: <code>150</code>)
+			<li><em>padding</em> (<abbr title=default>dflt</abbr>: <code>10</code>)
+			<li><em>triangleSize</em> (relative to <em>size</em> &minus; 2 &times; <em>padding</em>, <abbr title=default>dflt</abbr>: <code>0.75</code>)
+			<li><em>wheelPointerColor1</em> (<abbr title=default>dflt</abbr>: <code>'#444'</code>)
+			<li><em>wheelPointerColor2</em> (<abbr title=default>dflt</abbr>: <code>'#eee'</code>)
+			<li><em>trianglePointerSize</em> (<abbr title=default>dflt</abbr>: <code>20</code>)
+			<li><em>trianglePointerColor1</em> (<abbr title=default>dflt</abbr>: <code>'#eee'</code>)
+			<li><em>trianglePointerColor2</em> (<abbr title=default>dflt</abbr>: <code>'#444'</code>)
+			<li><em>background</em> (<abbr title=default>dflt</abbr>: <code>'transparent'</code>)
+		</ul>
+		<div id=layout-graphic-container></div>
+	</li>
+</ol>
+
+<h3 id=get_set_color>Get/set color</h3>
+
+<pre>triangle.<strong>getCSS</strong><span class=br>()</span>;</pre>
+<p class=explanation>Get color as a <a href=http://www.w3.org/TR/css3-color/#hsl-color>hsl CSS string</a>. This is the fastest way to use your color in your site because there's no conversion between color models.</p>
+
+<pre>
+triangle.<strong>setHEX</strong><span class=br>(</span><em>hexString</em><span class=br>)</span>;
+<span class=kw>var</span> hexString = triangle.<strong>getHEX</strong><span class=br>()</span>;
+</pre>
+<p class=explanation><em>hexString</em> must be a valid hex CSS color.</p>
+
+<pre>
+triangle.<strong>setRGB</strong><span class=br>(</span><em>r</em>, <em>g</em>, <em>b</em><span class=br>)</span>;
+<span class=kw>var</span> rgbArray = triangle.<strong>getRGB</strong><span class=br>()</span>;
+</pre>
+<p class=explanation><em>r</em> (&rArr;&nbsp;red), <em>g</em> (&rArr;&nbsp;green) and <em>b</em> (&rArr;&nbsp;blue) must be numbers from 0 to 1.</p>
+
+<pre>
+triangle.<strong>setHSL</strong>(<em>h</em>, <em>s</em>, <em>l</em>);
+<span class=kw>var</span> hslArray = triangle.<strong>getHSL</strong><span class=br>()</span>;
+</pre>
+<p class=explanation><em>h</em> (&rArr;&nbsp;hue) must be between 0 and 2&thinsp;&times;&thinsp;&pi; (radian). <em>s</em> (&rArr;&nbsp;saturation) and <em>l</em> (&rArr;&nbsp;lightness) have to be in the range from 0 to 1.</p>
+
+<pre>
+triangle.<strong>setColor</strong><span class=br>(</span><em>colorObj</em><span class=br>)</span>;
+<span class=kw>var</span> colorObj = triangle.<strong>getColor</strong><span class=br>()</span>;
+</pre>
+<p class=explanation>These methods are only available if you've included <a href=http://github.com/brehaut/color-js>brehaut/color-js</a> in your page. They accept respectively return color objects.</p>
+
+<h3 id=add_remove_page>Add to or remove from your page</h3>
+
+<pre>triangle.<strong>inject</strong><span class=br>(</span><em>element</em><span class=br>)</span>;</pre>
+<p class=explanation>Add the ColorTriangle to the document as the last child of <em>element</em>.</p>
+
+<pre>triangle.<strong>dispose</strong><span class=br>()</span>;</pre>
+<p class=explanation>Remove the ColorTriangle from the document.</p>
+
+<pre><span class=kw>var</span> mainElement = triangle.<strong>getElement</strong><span class=br>()</span>;</pre>
+<p class=explanation>Get the main element of the ColorTriangle (this is the element that is inserted in the document). Note: the element has the class <em>color-triangle</em>.</p>
+
+<h3 id=events>Events</h3>
+
+<pre>
+triangle.<strong>addEventListener</strong><span class=br>(</span><em>eventName</em>, <em>someFunction</em><span class=br>)</span>;
+triangle.<strong>removeEventListener</strong><span class=br>(</span><em>eventName</em>, <em>someFunction</em><span class=br>)</span>;
+</pre>
+<div class=explanation>
+	<p><em>eventName</em> can be one of the following strings:</p>
+	<ul>
+		<li>dragstart
+		<li>drag
+		<li>dragend
+	</ul>
+	<p>They behave exactly like you'd expect them to.</p>
+</div>
+
+<h3 id=helpers>Helpers</h3>
+
+<pre>ColorTriangle.<strong>initInput</strong><span class=br>(</span><em>inputElement</em> [, <em>options</em>]<span class=br>)</span>;</pre>
+<p class=explanation>This function shows a ColorTriangle when the user focuses the <em>inputElement</em>. The value of <em>inputElement</em> will be changed when the user selects a new color and a change event will be triggered on the <em>inputElement</em>. <em>options</em> is an object like described in <a href=#instantiation>Instantiation</a>, except 3 changes: The default values of <em>size</em> and <em>background</em> will be set to the width respectively background color of <em>inputElement</em>. There's a new property called <em>margin</em> which can be used to determine the space between <em>inputElement</em> and the ColorTriangle (<abbr title=default>dflt</abbr>: <code>10</code>).</p>
+
+<pre>ColorTriangle.<strong>initColorInputs</strong><span class=br>(</span>[<em>options</em>]<span class=br>)</span>;</pre>
+<p class=explanation>Calls <code>ColorTriangle.initInput</code> for every <code>input[type=color]</code>.</p>
+
+		</div>
+	</div>
+</div>
+<div class=section>
+	<div class="wrapper table">
+		<h2>Download</h2>
+		<p><a href=http://github.com/timjb/colortriangle/downloads/>All downloads on GitHub</a></p>
+	</div>
+</div>
+<div class=section>
+	<div class="wrapper table">
+		<h2>Notes</h2>
+		<p>Built using <code>&lt;canvas&gt;</code>. No JavaScript Framework needed. Tested in Firefox 3.6, Google Chrome 5.0, Safari 4.0 and Opera 10.60. Doesn't work in Internet Explorer. Development takes place <a href=http://github.com/timjb/colortriangle>on GitHub</a>. MIT License.</p>
+	</div>
+</div>
+
+<script src=color-js/color.js></script>
+<script src=colortriangle.js></script>
+<script src=demo.js defer></script>
+<script src=layoutgraphic.js defer></script>

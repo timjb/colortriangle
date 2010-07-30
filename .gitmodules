@@ -1,0 +1,3 @@
+[submodule "color-js"]
+	path = color-js
+	url = git://github.com/brehaut/color-js.git

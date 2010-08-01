@@ -145,7 +145,15 @@ triangle.<strong>removeEventListener</strong><span class=br>(</span><em>eventNam
 <h3 id=helpers>Helpers</h3>
 
 <pre>ColorTriangle.<strong>initInput</strong><span class=br>(</span><em>inputElement</em> [, <em>options</em>]<span class=br>)</span>;</pre>
-<p class=explanation>This function shows a ColorTriangle when the user focuses the <em>inputElement</em>. The value of <em>inputElement</em> will be changed when the user selects a new color and a change event will be triggered on the <em>inputElement</em>. <em>options</em> is an object like described in <a href=#instantiation>Instantiation</a>, except 3 changes: The default values of <em>size</em> and <em>background</em> will be set to the width respectively background color of <em>inputElement</em>. There's a new property called <em>margin</em> which can be used to determine the space between <em>inputElement</em> and the ColorTriangle (<abbr title=default>dflt</abbr>: <code>10</code>).</p>
+<div class=explanation>
+	<p>This function shows a ColorTriangle when the user focuses the <em>inputElement</em>. The value of <em>inputElement</em> will be changed when the user selects a new color and a change event will be triggered on the <em>inputElement</em>. <em>options</em> is an object like described in <a href=#instantiation>instantiation</a>, except 4 changes:
+	<ul>
+		<li>The default value of <em>size</em> will be set to the width of <em>inputElement</em>.
+		<li>The default value of <em>background</em> will be set to the background color of <em>inputElement</em>.
+		<li>New property <em>margin</em> which can be used to determine the space between <em>inputElement</em> and the ColorTriangle (<abbr title=default>dflt</abbr>: <code>10</code>).</p>
+		<li>New property <em>event</em> (<abbr title=default>dflt</abbr>: <code>'dragend'</code>). Please have a look at the <a href=#events>events section</a>. You can use this property to change the color while the user is dragging (value: <code>'drag'</code>).
+	</ul>
+</div>
 
 <pre>ColorTriangle.<strong>initColorInputs</strong><span class=br>(</span>[<em>options</em>]<span class=br>)</span>;</pre>
 <p class=explanation>Calls <code>ColorTriangle.initInput</code> for every <code>input[type=color]</code>.</p>

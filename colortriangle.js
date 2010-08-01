@@ -248,7 +248,7 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 		options: {
 			size: 150,
 			padding: 10,
-			triangleSize: .75,
+			triangleSize: .8,
 			wheelPointerColor1: '#444',
 			wheelPointerColor2: '#eee',
 			trianglePointerSize: 20,
@@ -264,7 +264,7 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 			this.innerSize      = opts.size - 2*opts.padding
 			this.triangleSize   = opts.triangleSize * this.innerSize;
 			this.wheelThickness = (this.innerSize - this.triangleSize) / 2;
-			this.wheelPointerSize = this.wheelThickness - 6;
+			this.wheelPointerSize = this.wheelThickness;
 			
 			this.wheelRadius    = this.innerSize / 2;
 			this.triangleRadius = this.triangleSize / 2;
@@ -324,7 +324,7 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 				ctx.rotate(PI / -180); // rotate one degree
 				ctx.beginPath();
 				ctx.fillStyle = 'hsl(' + i + ', 100%, 50%)';
-				ctx.arc(this.wheelRadius - (s / 2), 0, (s / 2) - 3, 0, PI * 2, true);
+				ctx.arc(this.wheelRadius - (s / 2), 0, s / 2, 0, PI * 2, true);
 				ctx.fill();
 			}
 			ctx.restore();

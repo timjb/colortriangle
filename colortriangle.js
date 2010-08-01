@@ -631,10 +631,9 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 	
 	ColorTriangle.initInput = function(input, options) {
 		options = options || {};
+		
 		var ct;
-		input.addEventListener('focus', function(evt) {
-			evt.preventDefault();
-			
+		function openColorTriangle() {
 			if(!ct) {
 				options.size = options.size || input.offsetWidth;
 				options.background = win.getComputedStyle(input, null).backgroundColor;
@@ -644,10 +643,10 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 				ct = new ColorTriangle(input.value, options);
 				ct.addEventListener(options.event, function() {
 					input.value = ct.getHEX();
-					var evt = doc.createEvent('HTMLEvents');
-					evt.initEvent('change', true, false); // bubbles = true, cancable = false
-					input.dispatchEvent(evt); // fire event
+					fireChangeEvent();
 				});
+			} else {
+				ct.setHEX(input.value);
 			}
 				
 			var top = input.offsetTop;
@@ -664,10 +663,27 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 			el.style.zIndex   = '1338'; // above everything
 			
 			ct.inject(input.parentNode);
-		}, false);
-		input.addEventListener('blur', function() {
+		}
+		function closeColorTriangle() {
 			if(ct) {
 				ct.dispose();
+			}
+		}
+		function fireChangeEvent() {
+			var evt = doc.createEvent('HTMLEvents');
+			evt.initEvent('change', true, false); // bubbles = true, cancable = false
+			input.dispatchEvent(evt); // fire event
+		}
+		
+		input.addEventListener('focus', openColorTriangle, false);
+		input.addEventListener('blur', closeColorTriangle, false);
+		input.addEventListener('keyup', function() {
+			var val = input.value;
+			if(val.match(/^#((?:[0-9A-Fa-f]{3})|(?:[0-9A-Fa-f]{6}))$/)) {
+				openColorTriangle();
+				fireChangeEvent();
+			} else {
+				closeColorTriangle();
 			}
 		}, false);
 	};

@@ -639,9 +639,10 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 				options.size = options.size || input.offsetWidth;
 				options.background = win.getComputedStyle(input, null).backgroundColor;
 				options.margin = options.margin || 10;
+				options.event = options.event || 'dragend';
 				
 				ct = new ColorTriangle(input.value, options);
-				ct.addEventListener('dragend', function() {
+				ct.addEventListener(options.event, function() {
 					input.value = ct.getHEX();
 					var evt = doc.createEvent('HTMLEvents');
 					evt.initEvent('change', true, false); // bubbles = true, cancable = false

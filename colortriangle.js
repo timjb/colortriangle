@@ -308,6 +308,7 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 			var c = this.wheel = doc.createElement('canvas');
 			c.width = c.height = this.innerSize;
 			c.style.position = 'absolute';
+			c.style.left = c.style.top = this.padding + 'px';
 			
 			this._drawWheel(c.getContext('2d'));
 			this.container.appendChild(c);
@@ -333,6 +334,7 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 			var c = this.triangle = doc.createElement('canvas');
 			c.width = c.height = this.innerSize;
 			c.style.position = 'absolute';
+			c.style.left = c.style.top = this.padding + 'px';
 			
 			this.triangleCtx = c.getContext('2d');
 			

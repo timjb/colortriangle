@@ -25,7 +25,7 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 	var PI = M.PI;
 	
 	// Check for Canvas Support
-	if(!typeof doc.createElement('canvas').getContext == 'function') {
+	if(typeof doc.createElement('canvas').getContext != 'function') {
 		return null;
 	}
 	

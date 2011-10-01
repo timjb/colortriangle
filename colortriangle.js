@@ -308,6 +308,7 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 			var c = this.wheel = doc.createElement('canvas');
 			c.width = c.height = this.innerSize;
 			c.style.position = 'absolute';
+			c.style.margin = c.style.padding = '0';
 			c.style.left = c.style.top = this.padding + 'px';
 			
 			this._drawWheel(c.getContext('2d'));
@@ -334,6 +335,7 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 			var c = this.triangle = doc.createElement('canvas');
 			c.width = c.height = this.innerSize;
 			c.style.position = 'absolute';
+			c.style.margin = c.style.padding = '0';
 			c.style.left = c.style.top = this.padding + 'px';
 			
 			this.triangleCtx = c.getContext('2d');
@@ -396,6 +398,7 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 			var size = this.wheelPointerSize;
 			c.width = c.height = size;
 			c.style.position = 'absolute';
+			c.style.margin = c.style.padding = '0';
 			this._drawPointer(c.getContext('2d'), size/2, this.options.wheelPointerColor1, this.options.wheelPointerColor2);
 			this.container.appendChild(c);
 		},
@@ -410,6 +413,7 @@ var ColorTriangle = (function(win, doc, M, undefined) {
 			var size = this.options.trianglePointerSize;
 			c.width = c.height = size;
 			c.style.position = 'absolute';
+			c.style.margin = c.style.padding = '0';
 			this._drawPointer(c.getContext('2d'), size/2, this.options.trianglePointerColor1, this.options.trianglePointerColor2);
 			this.container.appendChild(c);
 		},

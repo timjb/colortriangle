@@ -31,6 +31,7 @@ function log() {
 	ctx.clip();
 	
 	var link = doc.createElement('link');
+	link.type = 'image/x-icon';
 	link.rel = 'shortcut icon';
 	head.appendChild(link);
 	function drawFavicon() {

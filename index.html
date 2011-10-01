@@ -24,18 +24,13 @@
 <span class=co>// watch the favicon change its color</span>
 
 <span class=kw>var</span> ct = <span class=kw>new</span> <strong>ColorTriangle</strong><span class=br>(</span><span class=st>'#de701d'</span><span class=br>)</span>;
-ct.<strong>addEventListener</strong>(<span class=st>'dragend'</span>, <span class=kw>function</span><span class=br>() {</span><span id=webkit-notice></span>
+ct.<strong>addEventListener</strong>(<span class=st>'dragend'</span>, <span class=kw>function</span><span class=br>() {</span>
   drawFavicon<span class=br>(</span>ct.<span class=im>getHEX</span><span class=br>())</span>;
 <span class=br>})</span>;
 ct.<strong>inject</strong><span class=br>(</span>
   <span class=kw>document</span>.getElementById<span class=br>(</span><span class=st>'example-1'</span><span class=br>)
 )</span>;
 </pre>
-<script>
-if(navigator.userAgent.toLowerCase().indexOf('webkit') != -1) {
-	document.getElementById('webkit-notice').innerHTML = '\n  <span class=co>\/\/ drawFavicon might fail in Webkit browsers.\n  // Try Firefox or Opera instead.</span>';
-}
-</script>
 	</div>
 </div>
 <div class=section>

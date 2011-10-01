@@ -1,6 +1,6 @@
 # Screenshot
 
-![Screenshot](http://timjb.github.com/colortriangle/screenshot.png)
+![Screenshot](http://timbaumann.info/colortriangle/screenshot.png)
 
 
 # Usage
